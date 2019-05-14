@@ -22,7 +22,11 @@ section h2{
   margin-left: 2em;
  }
 
- form span{
+ form output{
   float: right;
   margin-right: 2em;
+ }
+
+ .overflow {
+  background-color: red;
  }
