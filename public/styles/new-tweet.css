@@ -1,0 +1,28 @@
+section {
+  overflow: auto;
+}
+
+section h2{
+  border-bottom: 2px solid #000000;
+  padding-left: 32px;
+  margin: 5px;
+}
+
+ textarea{
+  box-sizing: border-box;
+  width: 88%;
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-bottom: 1em;
+  padding-left: 1em;
+ }
+
+ input{
+  float: left;
+  margin-left: 2em;
+ }
+
+ form span{
+  float: right;
+  margin-right: 2em;
+ }
