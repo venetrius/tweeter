@@ -64,22 +64,31 @@ const renderNewTweet = function(tweet) {
   tweetsContainer.prepend(createTweetElement(tweet));
 }
 
-const isValidTweet = function(text){
+const isValidTweet = function(errorObj, text){
+  console.log(errorObj.errorMessage.slideToggle());
+  console.log("is valid?");
+  /*if(errorObj.visible){
+    visible = false;
+    errorObj.errorMessage.slideUp();
+  }*/
   if(!text){
-    alert("Tweet content is not valid, add some text.");
+    errorObj.errorMessage.text("Tweet content is not valid, add some text.");
+    console.log(errorObj.errorMessage);
   }else if(text.length > 140){
-    alert("Tweet content is not valid, max length is 140.");
+    errorObj.errorMessage.text("Tweet content is not valid, max length is 140.");
   }else{
     return true;
   }
-
+  errorObj.errorMessage.slideDown();
+  errorObj.visible = true;
 }
 
-const sendAjaxOnSubmit = function(){
+
+const sendAjaxOnSubmit = function(errorObj){
   $( "form" ).on( "submit", function( event ) {
     event.preventDefault();
     const text = this.querySelector('textarea').value;
-    if(isValidTweet(text)){
+    if(isValidTweet(errorObj, text)){
       $.ajax({
         url : '/tweets',
         method: 'POST' ,
@@ -103,9 +112,11 @@ const addToggleFuncionalityToComposeBtn = function(){
 }
 
 $( document ).ready(function() {
-
+  let errorObj ={ errorMessage : $("#errorMessage"),
+                  visible : false};
+  errorObj.errorMessage.slideUp(10);
   loadTweets();
-  sendAjaxOnSubmit();
+  sendAjaxOnSubmit(errorObj);
   addToggleFuncionalityToComposeBtn();
 });
 
