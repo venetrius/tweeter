@@ -91,10 +91,28 @@ const sendAjaxOnSubmit = function(){
   });
 }
 
+const addToggleFuncionalityToComposeBtn = function(){
+  let active = true;
+  let newTweet = $(".container .new-tweet ");
+  const callback = function(event){
+    if(active){
+      $(newTweet).slideUp();
+      active = false;
+    }else{
+      $(newTweet).slideDown();
+      active = true;
+    }
+  }
+
+  $("nav button").click(callback);
+
+}
+
 $( document ).ready(function() {
 
   loadTweets();
   sendAjaxOnSubmit();
+  addToggleFuncionalityToComposeBtn();
 });
 
 
