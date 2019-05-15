@@ -98,16 +98,27 @@ const createTweetElement = function(tweet){
 
  }
 
+const renderTweets = function (tweets) {
+  const tweetsContainer = $('#tweets-container');
+  for(let tweet of tweets){
+    tweetsContainer.append(createTweetElement(tweet));
+  };
+}
+
+const sendAjaxOnSubmit = function(){
+  $( "form" ).on( "submit", function( event ) {
+    event.preventDefault();
+    $.ajax({
+      url : '/tweets',
+      method: 'POST' ,
+      data :  $('form').serialize()
+    });
+  });
+}
+
 $( document ).ready(function() {
-
-  function renderTweets(tweets) {
-    const tweetsContainer = $('#tweets-container');
-    for(let tweet of tweets){
-      tweetsContainer.append(createTweetElement(tweet));
-    };
-  }
-
   renderTweets(tweetData);
+  sendAjaxOnSubmit();
 });
 
 
