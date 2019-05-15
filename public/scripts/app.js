@@ -25,10 +25,9 @@ const createTweetHeader = function(user){
 }
 
 const createTweetContent = function(content){
-  let $content =
-          `<div>
-            <span>${content.text}</span>
-          </div>`
+  let $content = $("<div>");
+  let $span = $("<span>").text(content.text);
+  $content.append($span);
   return $content;
 }
 
@@ -48,11 +47,7 @@ const createTweetElement = function(tweet){
   let $header = createTweetHeader(tweet.user);
   let $content = createTweetContent(tweet.content);
   let $footer = createTweetFooter(tweet.created_at);
-  let $tweet = `<article>
-                  ${$header}
-                  ${$content}
-                  ${$footer}
-                </article>`;
+  let $tweet = $("<article>").append($header).append($content).append($footer);
   return $tweet;
 
  }
@@ -65,7 +60,6 @@ const renderTweets = function (tweets) {
 }
 
 const renderNewTweet = function(tweet) {
-  console.log(tweet);
   const tweetsContainer = $('#tweets-container');
   tweetsContainer.prepend(createTweetElement(tweet));
 }
@@ -90,7 +84,6 @@ const sendAjaxOnSubmit = function(){
         url : '/tweets',
         method: 'POST' ,
         data :  $('form').serialize(),
-       // success: (res ) => console.log(res)
        success: (res ) => renderNewTweet(res)
       });
       this.querySelector('textarea').value = "";
