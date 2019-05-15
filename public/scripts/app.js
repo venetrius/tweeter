@@ -26,8 +26,8 @@ const createTweetHeader = function(user){
 
 const createTweetContent = function(content){
   let $content = $("<div>");
-  let $span = $("<span>").text(content.text);
-  $content.append($span);
+  let $span = $("<span>").text(content.text).appendTo($content);
+ // $content.append($span);
   return $content;
 }
 
@@ -92,22 +92,14 @@ const sendAjaxOnSubmit = function(){
 }
 
 const addToggleFuncionalityToComposeBtn = function(){
-  let active = true;
-  let newTweet = $(".container .new-tweet ");
+  let newTweet = $(".container .new-tweet");
   let textarea = $('textarea');
   const callback = function(event){
-    if(active){
-      $(newTweet).slideUp();
-      active = false;
-    }else{
-      $(newTweet).slideDown();
-      active = true;
-       $( textarea ).focus();
-    }
+    newTweet.slideToggle();
+    textarea.focus();
   }
 
   $("nav button").click(callback);
-
 }
 
 $( document ).ready(function() {
