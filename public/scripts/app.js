@@ -4,6 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// TODO sort tweets newest should be the first to be rendered
 const loadTweets = function() {
   $.ajax({
       url : '/tweets',
@@ -63,6 +64,12 @@ const renderTweets = function (tweets) {
   };
 }
 
+const renderNewTweet = function(tweet) {
+  console.log(tweet);
+  const tweetsContainer = $('#tweets-container');
+  tweetsContainer.prepend(createTweetElement(tweet));
+}
+
 const isValidTweet = function(text){
   if(!text){
     alert("Tweet content is not valid, add some text.");
@@ -82,7 +89,9 @@ const sendAjaxOnSubmit = function(){
       $.ajax({
         url : '/tweets',
         method: 'POST' ,
-        data :  $('form').serialize()
+        data :  $('form').serialize(),
+       // success: (res ) => console.log(res)
+       success: (res ) => renderNewTweet(res)
       });
       this.querySelector('textarea').value = "";
     }
