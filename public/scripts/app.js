@@ -63,18 +63,34 @@ const renderTweets = function (tweets) {
   };
 }
 
+const isValidTweet = function(text){
+  if(!text){
+    alert("Tweet content is not valid, add some text.");
+  }else if(text.length > 140){
+    alert("Tweet content is not valid, max length is 140.");
+  }else{
+    return true;
+  }
+
+}
+
 const sendAjaxOnSubmit = function(){
   $( "form" ).on( "submit", function( event ) {
     event.preventDefault();
-    $.ajax({
-      url : '/tweets',
-      method: 'POST' ,
-      data :  $('form').serialize()
-    });
+    const text = this.querySelector('textarea').value;
+    if(isValidTweet(text)){
+      $.ajax({
+        url : '/tweets',
+        method: 'POST' ,
+        data :  $('form').serialize()
+      });
+      this.querySelector('textarea').value = "";
+    }
   });
 }
 
 $( document ).ready(function() {
+
   loadTweets();
   sendAjaxOnSubmit();
 });
