@@ -94,6 +94,7 @@ const sendAjaxOnSubmit = function(){
 const addToggleFuncionalityToComposeBtn = function(){
   let active = true;
   let newTweet = $(".container .new-tweet ");
+  let textarea = $('textarea');
   const callback = function(event){
     if(active){
       $(newTweet).slideUp();
@@ -101,6 +102,7 @@ const addToggleFuncionalityToComposeBtn = function(){
     }else{
       $(newTweet).slideDown();
       active = true;
+       $( textarea ).focus();
     }
   }
 
