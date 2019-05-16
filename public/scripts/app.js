@@ -64,23 +64,20 @@ const renderNewTweet = function(tweet) {
   tweetsContainer.prepend(createTweetElement(tweet));
 }
 
-const isValidTweet = function(errorObj, text){
-  console.log(errorObj.errorMessage.slideToggle());
-  console.log("is valid?");
-  /*if(errorObj.visible){
-    visible = false;
-    errorObj.errorMessage.slideUp();
-  }*/
+const isValidTweet = function(errorMessage, text){
+  // if error message is shown, toggle it
+  if(errorMessage.is( ":visible" )){
+    errorMessage.slideUp();
+  }
   if(!text){
-    errorObj.errorMessage.text("Tweet content is not valid, add some text.");
-    console.log(errorObj.errorMessage);
+    errorMessage.text("Tweet content is not valid, add some text.");
   }else if(text.length > 140){
-    errorObj.errorMessage.text("Tweet content is not valid, max length is 140.");
+    errorMessage.text("Tweet content is not valid, max length is 140.");
   }else{
     return true;
   }
-  errorObj.errorMessage.slideDown();
-  errorObj.visible = true;
+  errorMessage.slideDown();
+  // return false or ommit return statement, what is the best practice?
 }
 
 
@@ -113,11 +110,10 @@ const addToggleFuncionalityToComposeBtn = function(){
 }
 
 $( document ).ready(function() {
-  let errorObj ={ errorMessage : $("#errorMessage"),
-                  visible : false};
-  errorObj.errorMessage.slideUp(10);
+  let errorMessage = $("#errorMessage");
+  errorMessage.slideUp();
   loadTweets();
-  sendAjaxOnSubmit(errorObj);
+  sendAjaxOnSubmit(errorMessage);
   addToggleFuncionalityToComposeBtn();
 });
 
