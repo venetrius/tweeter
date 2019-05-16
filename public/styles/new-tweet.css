@@ -1,3 +1,9 @@
+
+.hidden{
+  /* https://stackoverflow.com/questions/10960753/how-to-make-toggle-hidden-by-default */
+  display:none;
+}
+
 section {
   overflow: auto;
 }
