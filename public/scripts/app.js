@@ -36,9 +36,9 @@ const createTweetFooter = function(timeStamp){
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   const $footer =
     `<footer> ${diffDays} days ago
-            <img src="./../images/arrows.png"/>
-            <img src="./../images/heart.png"/>
-            <img src="./../images/flag.png"/>
+      <i class="fas fa-retweet"></i>
+      <i class="far fa-heart"></i>
+      <i class="fab fa-font-awesome-flag"></i>
     </footer>`
     return $footer;
 }
