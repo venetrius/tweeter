@@ -96,6 +96,7 @@ const sendAjaxOnSubmit = function(errorObj){
        success: (res ) => renderNewTweet(res)
       });
       this.querySelector('textarea').value = "";
+      this.querySelector('output').value = "140";
     }
   });
 }
