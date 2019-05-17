@@ -23,7 +23,16 @@ module.exports = function makeDataHelpers(db) {
       }
       callback(null, tweets.sort(sortNewestFirst));
     });
-  }
+    },
+
+    getUser: function(email, callback){
+      db.collection('users').findOne({email : email}, (err, user) => {
+        if (err) {
+          return callback(err);
+        }
+        callback(null, user);
+      });
+    }
 
   }
 }
