@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/userforms.css" type="text/css" />
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
@@ -34,6 +35,7 @@
       <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
       <button id="compose"> Compose </button>
+      <button onclick="$('#register').show();">Register</button>
       <button onclick="$('#login').show();">LogIn</button>
     </nav>
 
@@ -54,6 +56,8 @@
       </section>
     </main>
 
+    <!-- Login popup -->
+    <div id="popups">
     <form id="login" action="users/login" method="POST"  class="w3-modal">
       <div class="w3-modal-content w3-card-4">
         <header class="w3-container w3-teal">
@@ -73,6 +77,53 @@
         </footer>
       </div>
     </form>
+
+    <!-- Register popup -->
+    <form id="register" action="users/register" method="POST"  class="w3-modal">
+      <div class="w3-modal-content w3-card-4">
+        <header class="w3-container w3-teal">
+          <span onclick="$('#register').hide()" class="w3-button w3-display-topright">&times;</span>
+          <h2>Register</h2>
+        </header>
+        <!-- name -->
+        <div class="inputblock">
+        <label for="name"><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" required>
+        </div>
+        <!-- name -->
+        <div class="inputblock">
+        <label for="tagname"><b>TagName</b></label>
+        <input type="text" placeholder="@SomeThing" name="tagname" required>
+        </div>
+        <!-- e-mail -->
+        <div class="inputblock">
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" required>
+        </div>
+        <div class="inputblock">
+        <label for="email"><b>Confirm Email</b></label>
+        <input type="email" placeholder="Confirm Email" name="confEmail" required>
+        </div>
+        <!-- password -->
+        <div class="inputblock">
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        </div>
+        <div class="inputblock">
+        <label for="psw"><b>Confirm Password</b></label>
+        <input type="password" placeholder="Confirm Password" name="confPassword" required>
+        </div>
+
+        <footer class="w3-container w3-teal">
+          <button type="submit" class="btn">Login</button>
+          <button type="button" class="btn cancel" onclick="$('#register').hide()">
+            Close
+          </button>
+        </footer>
+      </div>
+    </form>
+  </div>
+
 
   </body>
 </html>

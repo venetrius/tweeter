@@ -1,0 +1,19 @@
+#popups label, #popups input {
+  padding-left: 10px;
+}
+
+.inputblock {
+  display: inline-block;
+  width: 47%;
+}
+
+@media (max-width: 300px){
+  .inputblock {
+    display: list-item;
+  }
+  #popups label {
+    width: 100%;
+    padding-left: 0px;
+    text-align: center;
+  }
+}
