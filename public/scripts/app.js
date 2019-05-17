@@ -82,7 +82,7 @@ const isValidTweet = function(errorMessage, text){
 
 
 const sendAjaxOnSubmit = function(errorObj){
-  $( "form" ).on( "submit", function( event ) {
+  $( "section form" ).on( "submit", function( event ) {
     event.preventDefault();
     const text = this.querySelector('textarea').value;
     if(isValidTweet(errorObj, text)){
@@ -99,14 +99,14 @@ const sendAjaxOnSubmit = function(errorObj){
 }
 
 const addToggleFuncionalityToComposeBtn = function(){
-  let newTweet = $(".container .new-tweet");
+  let newTweet = $(".new-tweet");
   let textarea = $('textarea');
   const callback = function(event){
     newTweet.slideToggle();
     textarea.focus();
   }
 
-  $("nav button").click(callback);
+  $("nav #compose").click(callback);
 }
 
 $( document ).ready(function() {
