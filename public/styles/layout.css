@@ -32,3 +32,11 @@ body {
   margin: 0 auto;
   margin-top: 85px;
  }
+
+ @media (max-width: 641px){
+  main{
+    width: 100vw;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}

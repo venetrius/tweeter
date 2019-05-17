@@ -34,10 +34,36 @@
   line-height: 40px;
   margin: 20px;
   color: #00a087;
- /* border: 1px solid #000000;*/
 }
 
 #nav-bar button:hover{
   color: black;
- /* border: 1px solid #000000; */
+}
+
+@media (max-width: 641px){
+  #nav-bar{
+    width: 100vw;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+@media (max-width: 320px){
+  #nav-bar button {
+    margin-right: 2vw;
+  }
+
+  #nav-bar .logo{
+    margin-right: 2vw;
+  }
+
+  #nav-bar .header{
+    display:none;
+  }
+}
+
+@media (max-width: 190px){
+  #nav-bar .logo{
+    display: none;
+  }
 }

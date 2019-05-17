@@ -71,3 +71,62 @@ article footer i{
   margin: 5px 10px 5px 0px;
   float:right;
 }
+
+@media (max-width: 641px){
+  section{
+    width: 96%;
+    margin: 0 auto; 
+  }
+
+  article{
+    width: 96%; 
+    margin: 2vw;
+  }
+
+  article header .signature{
+    display:none;
+  }
+
+  article header .signature{
+    font-size: 25px;
+  }
+
+  article div span {
+    width: 88%;
+    overflow: auto;
+  }
+}
+
+@media (max-width: 320px){
+  article {
+    height: 120px;
+  }
+  article header img{
+    display: none;
+  }
+
+  article header {
+    height: 20px;
+  }
+
+  article header .name{
+    overflow: auto;
+    padding-top: 3px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  article div, article span {
+    height: 75px;
+    width: 98%;
+    overflow: auto;
+  
+  }
+
+}
+
+@media (max-width: 190px){
+  article:hover footer i{
+    display: none;
+  }
+}
