@@ -7,6 +7,11 @@
   width: 47%;
 }
 
+.error {
+  color: red;
+  font-weight: bold;
+}
+
 @media (max-width: 300px){
   .inputblock {
     display: list-item;

@@ -112,6 +112,7 @@ const addToggleFuncionalityToComposeBtn = function(){
 const loggedInCallBack = function(){
   $('.anAuth').hide();
   $('.auth').show();
+  $('.error').text('');
 }
 
 //TODO implement server call
@@ -136,8 +137,8 @@ const userRegistrationAjax = function(){
         data    : $(this).serialize(), //todo it send a lot of trash to the server
         success: function(res ){loggedInCallBack(); $( "#register" ).hide()},
         error: function(req, textStatus, errorThrown) {
-          if(XMLHttpRequest.status < 500){
-            alert("errorThrown");
+          if(req.status < 500){
+            $( "#register output" ).text(req.responseText);
           }else{
             alert("Opsz something went wrong. Please try it again later.");
           }
@@ -157,8 +158,8 @@ const userLoginAjax = function(){
         data    : $(this).serialize(),
         success:  function(res ){$( "#login" ).hide(); loggedInCallBack()},
         error: function(req, textStatus, errorThrown) {
-          if(XMLHttpRequest.status < 500){
-            alert("The email or password is incorrect.");
+          if(req.status < 500){
+            $( "#login output" ).text("The email or password is incorrect.");
           }else{
             alert("Opsz something went wrong. Please try it again later.");
           }
