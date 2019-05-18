@@ -109,12 +109,60 @@ const addToggleFuncionalityToComposeBtn = function(){
   $("nav #compose").click(callback);
 }
 
+const loggedInCallBack = function(){
+  $('.anAuth').hide();
+  $('.auth').show();
+}
+
+//TODO implement server call
+const loggedOutCallBack = function(){
+  $('.anAuth').show();
+  $('.auth').hide();
+}
+
+// TODO put it into HTML ?
+const bindLogout = function(){
+  $('#logout').click(loggedOutCallBack);
+}
+
+// TODO add error handling
+const userRegistrationAjax = function(){
+   $( "#register" ).on( "submit", function( event ) {
+    event.preventDefault();
+    $.ajax(
+      {
+        url     : 'users',
+        method  : 'POST',
+        data    : $(this).serialize(), //todo it send a lot of trash to the server
+        success: (res ) => {loggedInCallBack(); $( "#register" ).hide()}
+      }
+    );
+  })
+}
+
+const userLoginAjax = function(){
+     $( "#login" ).on( "submit", function( event ) {
+    event.preventDefault();
+    $.ajax(
+      {
+        url     : 'users/login',
+        method  : 'POST',
+        data    : $(this).serialize(),
+        success: (res ) => {$( "#login" ).hide(); loggedInCallBack()}
+      }
+    );
+  })
+}
+
 $( document ).ready(function() {
   let errorMessage = $("#errorMessage");
   errorMessage.slideUp();
   loadTweets();
   sendAjaxOnSubmit(errorMessage);
   addToggleFuncionalityToComposeBtn();
+  userRegistrationAjax();
+  userLoginAjax();
+  bindLogout();
 });
 
 
