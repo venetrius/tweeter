@@ -25,13 +25,16 @@ module.exports = function makeDataHelpers(db) {
     });
     },
 
-    getUser: function(email, callback){
-      db.collection('users').findOne({email : email}, (err, user) => {
+    getUser: function(query, callback){
+      db.collection('users').findOne(query, (err, user) => {
         if (err) {
           return callback(err);
         }
         callback(null, user);
       });
+    },
+    saveUser: function(newUser, callback){
+      db.collection("users").insertOne(newUser, (err, res) => callback(err, res));
     }
 
   }

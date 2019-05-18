@@ -79,7 +79,7 @@
     </form>
 
     <!-- Register popup -->
-    <form id="register" action="users/register" method="POST"  class="w3-modal">
+    <form id="register" action="users" method="POST"  class="w3-modal">
       <div class="w3-modal-content w3-card-4">
         <header class="w3-container w3-teal">
           <span onclick="$('#register').hide()" class="w3-button w3-display-topright">&times;</span>
@@ -90,7 +90,7 @@
         <label for="name"><b>Name</b></label>
         <input type="text" placeholder="Enter Name" name="name" required>
         </div>
-        <!-- name -->
+        <!-- tagename -->
         <div class="inputblock">
         <label for="tagname"><b>TagName</b></label>
         <input type="text" placeholder="@SomeThing" name="tagname" required>
@@ -110,12 +110,12 @@
         <input type="password" placeholder="Enter Password" name="password" required>
         </div>
         <div class="inputblock">
-        <label for="psw"><b>Confirm Password</b></label>
+        <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Confirm Password" name="confPassword" required>
         </div>
 
         <footer class="w3-container w3-teal">
-          <button type="submit" class="btn">Login</button>
+          <button type="submit" class="btn">Register</button>
           <button type="button" class="btn cancel" onclick="$('#register').hide()">
             Close
           </button>
