@@ -134,7 +134,14 @@ const userRegistrationAjax = function(){
         url     : 'users',
         method  : 'POST',
         data    : $(this).serialize(), //todo it send a lot of trash to the server
-        success: (res ) => {loggedInCallBack(); $( "#register" ).hide()}
+        success: function(res ){loggedInCallBack(); $( "#register" ).hide()},
+        error: function(req, textStatus, errorThrown) {
+          if(XMLHttpRequest.status < 500){
+            alert("errorThrown");
+          }else{
+            alert("Opsz something went wrong. Please try it again later.");
+          }
+        }
       }
     );
   })
@@ -148,7 +155,14 @@ const userLoginAjax = function(){
         url     : 'users/login',
         method  : 'POST',
         data    : $(this).serialize(),
-        success: (res ) => {$( "#login" ).hide(); loggedInCallBack()}
+        success:  function(res ){$( "#login" ).hide(); loggedInCallBack()},
+        error: function(req, textStatus, errorThrown) {
+          if(XMLHttpRequest.status < 500){
+            alert("The email or password is incorrect.");
+          }else{
+            alert("Opsz something went wrong. Please try it again later.");
+          }
+        }
       }
     );
   })

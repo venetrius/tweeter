@@ -22,7 +22,7 @@ const createUser = function(DataHelpers, userProfile, req, res){
           return res.status(500).send();
         }
         if(user){
-          return res.status(400).json({ error: 'invalid request: email adress already in use'});
+          return res.status(400).send('email adress already in use');
         }else{
           DataHelpers.saveUser(userProfile,
             (err, newUser) => {
@@ -45,7 +45,7 @@ module.exports = function(DataHelpers) {
         if(error){
           return res.status(400).send();
         }
-        if(user.password === req.body.password){
+        if(user && user.password === req.body.password){
           res.status(201).send('<body>Yeeey good job</body');
         }else{
           res.status(403).send('<body>Unauthorized</body');
@@ -56,12 +56,10 @@ module.exports = function(DataHelpers) {
 
   usersRoutes.post("/",
     function(req, res) {
-      console.log("user registration ...");
       const userProfile = initUser(req.body);
       if(!userProfile){
         return res.status(400).json({ error: 'invalid request: incomplete form'});
       }
-      console.log("user profile created");
       createUser(DataHelpers, userProfile, req, res);
     }
   );
