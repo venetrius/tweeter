@@ -43,7 +43,7 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-
+      <!-- new tweet form -->
       <section class="new-tweet hidden">
         <h2>Compose Tweet</h2>
         <form method="POST" action="/tweets">
@@ -53,7 +53,7 @@
           <div ID="errorMessage"/>
         </form>
       </section>
-
+      <!-- container, tweets generated dynamically-->
       <section id="tweets-container">
       </section>
     </main>
@@ -93,7 +93,7 @@
         <label for="name"><b>Name</b></label>
         <input type="text" placeholder="Enter Name" name="name" required>
         </div>
-        <!-- tagename -->
+        <!-- tagname -->
         <div class="inputblock">
         <label for="tagname"><b>TagName</b></label>
         <input type="text" placeholder="@SomeThing" name="tagname" required>

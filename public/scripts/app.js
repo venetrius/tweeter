@@ -4,7 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// TODO sort tweets newest should be the first to be rendered
 const loadTweets = function() {
   $.ajax({
       url : '/tweets',
@@ -19,7 +18,7 @@ const createTweetHeader = function(user){
     `<header>
       <img src=${user.avatars.small}>
       <span class="name"> ${user.name} </span>
-      <span class="signature"> ${user.handle} </span>
+      <span class="signature"> ${user.tagname} </span>
     </header>`;
     return $header;
 }
@@ -72,7 +71,7 @@ const isValidTweet = function(errorMessage, text){
   if(!text){
     errorMessage.text("Tweet content is not valid, add some text.");
   }else if(text.length > 140){
-    errorMessage.text("Tweet content is not valid, max length is 140.");
+    errorMessage.text("Tweet too long, max length is 140.");
   }else{
     return true;
   }
@@ -81,7 +80,7 @@ const isValidTweet = function(errorMessage, text){
 }
 
 
-const sendAjaxOnSubmit = function(errorObj){
+const bindAjaxOnSubmit = function(errorObj){
   $( "section form" ).on( "submit", function( event ) {
     event.preventDefault();
     const text = this.querySelector('textarea').value;
@@ -94,9 +93,8 @@ const sendAjaxOnSubmit = function(errorObj){
         error: function(req, textStatus, errorThrown) {
           if(req.status < 500){
             alert(textStatus);
-           // $( "#register output" ).text(req.responseText);
           }else{
-            alert("Opsz something went wrong. Please try it again later.");
+            alert("Ops something went wrong. Please try it again later.");
           }
         }
       });
@@ -124,8 +122,10 @@ const loggedInCallBack = function(email){
   $('.error').text('');
 }
 
-//TODO implement server call
+//TODO implement server call, to clear the cookie
 const loggedOutCallBack = function(){
+  $(".new-tweet form textarea").val(""); //clear unsent values from new-tweet textarea so next user does not see it
+  $(".new-tweet").hide();
   $('.anAuth').show();
   $('.auth').hide();
 }
@@ -136,7 +136,7 @@ const bindLogout = function(){
 }
 
 // TODO add error handling
-const userRegistrationAjax = function(){
+const bindUserRegistrationAjax = function(){
    $( "#register" ).on( "submit", function( event ) {
     event.preventDefault();
     $.ajax(
@@ -149,7 +149,7 @@ const userRegistrationAjax = function(){
           if(req.status < 500){
             $( "#register output" ).text(req.responseText);
           }else{
-            alert("Opsz something went wrong. Please try it again later.");
+            alert("Ops something went wrong. Please try it again later.");
           }
         }
       }
@@ -157,7 +157,7 @@ const userRegistrationAjax = function(){
   })
 }
 
-const userLoginAjax = function(){
+const bindUserLoginAjax = function(){
      $( "#login" ).on( "submit", function( event ) {
     event.preventDefault();
     $.ajax(
@@ -165,12 +165,12 @@ const userLoginAjax = function(){
         url     : 'users/login',
         method  : 'POST',
         data    : $(this).serialize(),
-        success:  function(res ){$( "#login" ).hide(); loggedInCallBack($( "#login" )[0][0].value)},
+        success:  function(res ){$( "#login" ).hide(); loggedInCallBack($( "#login" )[0][0].value)}, // passing the email
         error: function(req, textStatus, errorThrown) {
           if(req.status < 500){
             $( "#login output" ).text("The email or password is incorrect.");
           }else{
-            alert("Opsz something went wrong. Please try it again later.");
+            alert("Ops something went wrong. Please try it again later.");
           }
         }
       }
@@ -178,14 +178,21 @@ const userLoginAjax = function(){
   })
 }
 
+// Code to run when page is loaded
 $( document ).ready(function() {
+  // hide logout and compose buttons
+  loggedOutCallBack();
+  // Find and hide error message
   let errorMessage = $("#errorMessage");
   errorMessage.slideUp();
+  // Populate tweets content
   loadTweets();
-  sendAjaxOnSubmit(errorMessage);
+  
+  // Bind events to buttons
   addToggleFuncionalityToComposeBtn();
-  userRegistrationAjax();
-  userLoginAjax();
+  bindAjaxOnSubmit(errorMessage);
+  bindUserRegistrationAjax();
+  bindUserLoginAjax();
   bindLogout();
 });
 
