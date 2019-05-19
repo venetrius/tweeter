@@ -117,7 +117,8 @@ const addToggleFuncionalityToComposeBtn = function(){
   $("nav #compose").click(callback);
 }
 
-const loggedInCallBack = function(){
+const loggedInCallBack = function(email){
+  $( "#loggedInAs" ).text("Logged in as : " + email);
   $('.anAuth').hide();
   $('.auth').show();
   $('.error').text('');
@@ -143,7 +144,7 @@ const userRegistrationAjax = function(){
         url     : 'users',
         method  : 'POST',
         data    : $(this).serialize(), //todo it send a lot of trash to the server
-        success: function(res ){loggedInCallBack(); $( "#register" ).hide()},
+        success: function(res ){loggedInCallBack(res.email); $( "#register" ).hide()},
         error: function(req, textStatus, errorThrown) {
           if(req.status < 500){
             $( "#register output" ).text(req.responseText);
@@ -164,7 +165,7 @@ const userLoginAjax = function(){
         url     : 'users/login',
         method  : 'POST',
         data    : $(this).serialize(),
-        success:  function(res ){$( "#login" ).hide(); loggedInCallBack()},
+        success:  function(res ){$( "#login" ).hide(); loggedInCallBack($( "#login" )[0][0].value)},
         error: function(req, textStatus, errorThrown) {
           if(req.status < 500){
             $( "#login output" ).text("The email or password is incorrect.");
