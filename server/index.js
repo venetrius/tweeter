@@ -6,12 +6,16 @@ const PORT          = 8080;
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const morgan        = require("morgan");
-
+const cookieSession = require('cookie-session');
 const app           = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
 
 // The in-memory database of tweets. It's a basic object with an array in it.
 const {MongoClient} = require("mongodb");
