@@ -3,6 +3,7 @@
 
 const express       = require('express');
 const usersRoutes  = express.Router();
+const userHelper    = require("../lib/util/user-helper")
 
 const initUser = function(userData){
   if(userData.name && userData.tagname && userData.email && userData.password){
@@ -10,7 +11,8 @@ const initUser = function(userData){
       name : userData.name,
       tagname : userData.tagname,
       email : userData.email,
-      password : userData.password
+      password : userData.password,
+      avatars : userHelper.generateUserAvatar(userData.tagname)
     }
   }
 }
