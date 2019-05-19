@@ -90,7 +90,15 @@ const sendAjaxOnSubmit = function(errorObj){
         url : '/tweets',
         method: 'POST' ,
         data :  $('form').serialize(),
-       success: (res ) => renderNewTweet(res)
+        success: (res ) => renderNewTweet(res),
+        error: function(req, textStatus, errorThrown) {
+          if(req.status < 500){
+            alert(textStatus);
+           // $( "#register output" ).text(req.responseText);
+          }else{
+            alert("Opsz something went wrong. Please try it again later.");
+          }
+        }
       });
       this.querySelector('textarea').value = "";
       this.querySelector('output').value = "140";
