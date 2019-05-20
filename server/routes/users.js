@@ -40,6 +40,7 @@ const createUser = function(DataHelpers, userProfile, req, res){
     );
 }
 
+// Helper functions handling the communication with a db users collection
 module.exports = function(DataHelpers) {
 
   usersRoutes.post("/login",
@@ -50,7 +51,8 @@ module.exports = function(DataHelpers) {
         }
         if(user && user.password === req.body.password){
           req.session.user_id = user._id;
-          // TODO is it safe to pass a user _id (from db) as a cookie param?
+          // TODO how safe is to pass a user _id (from db) as a cookie param?
+          // probably not too much as it never expires?
           res.status(201).send('<body>Yeeey good job</body');
         }else{
           res.status(403).send('<body>Unauthorized</body');

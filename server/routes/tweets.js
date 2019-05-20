@@ -3,6 +3,7 @@
 const express       = require('express');
 const tweetsRoutes  = express.Router();
 
+// Helper functions handling the communication with a db tweeter collection
 module.exports = function(DataHelpers) {
 
   tweetsRoutes.get("/", function(req, res) {
