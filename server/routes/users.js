@@ -53,7 +53,7 @@ module.exports = function(DataHelpers) {
           req.session.user_id = user._id;
           // TODO how safe is to pass a user _id (from db) as a cookie param?
           // probably not too much as it never expires?
-          res.status(201).send('<body>Yeeey good job</body');
+          res.status(201).send();
         }else{
           res.status(403).send('<body>Unauthorized</body');
         }

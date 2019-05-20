@@ -86,13 +86,6 @@ Tweeter is a simple, single-page Twitter clone.
 
 -    When a user submits a valid tweet, the list of tweets is refreshed (displaying the new tweet), the Compose Tweet textarea is cleared, and the Character Counter is reset (to 140)
 
-
-
-
-
-
-
-
 ## TODO
 ### docs
 - update README.md with strech funcionality
@@ -101,8 +94,9 @@ Tweeter is a simple, single-page Twitter clone.
 - use hashing for safer password handling
 - use other than db _id as a session id (something which can expire)
 - handle if user already logged in when requesting the page (sending header - param?, hidden field?, automoatic login ajax on page load?)
+- after registering user should have been logged in without logging in
 ### client side
 - use ajax for logout (after it is implemented on server side)
 - make the header and the new-tweet error field (great, khmmm no the other - one..) responsive again
 - get rid of unnessecery scrolls (when on small screen size)
-
+- check if email and psw is the same as the Confirm parts

@@ -144,7 +144,7 @@ const bindUserRegistrationAjax = function(){
         url     : 'users',
         method  : 'POST',
         data    : $(this).serialize(), //todo it send a lot of trash to the server
-        success: function(res ){loggedInCallBack(res.email); $( "#register" ).hide()},
+        success: function(res ){ $( "#register" ).hide(); $( "#login" ).show()},
         error: function(req, textStatus, errorThrown) {
           if(req.status < 500){
             $( "#register output" ).text(req.responseText);
