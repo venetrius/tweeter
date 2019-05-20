@@ -1,7 +1,5 @@
 "use strict";
 
-// Basic express setup:
-
 const PORT          = 8080;
 const express       = require("express");
 const bodyParser    = require("body-parser");
@@ -17,7 +15,7 @@ app.use(cookieSession({
   keys: ['key1', 'key2']
 }));
 
-// The in-memory database of tweets. It's a basic object with an array in it.
+// Dependency and properties for db connection
 const {MongoClient, ObjectID} = require("mongodb");
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";
 
@@ -48,9 +46,6 @@ app.use("/tweets", tweetsRoutes);
 app.use("/users", usersRoutes);
 
 });
-
-
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

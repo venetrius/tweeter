@@ -26,6 +26,7 @@ module.exports = function(DataHelpers) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
     }
+    // identify the creator user
     DataHelpers.getUser(DataHelpers.createIdQuery(userId),
       function(error, user){
         if(error){
