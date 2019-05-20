@@ -23,6 +23,11 @@ section h2{
   padding-left: 1em;
  }
 
+ textarea:focus {
+  border: 2px solid green;
+
+ }
+
  section form input{
   float: left;
   margin-left: 2em;
