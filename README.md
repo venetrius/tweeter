@@ -4,7 +4,7 @@ Tweeter is a simple, single-page Twitter clone.
 
 ## Final Product (screenshots)
 
-!["Register"](docs/register.png) 
+!["Register"](docs/registrate.png) 
 
 !["Create Your own twitter(clone) post!"](docs/write-a-comment.png)
 
